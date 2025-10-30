@@ -36,6 +36,7 @@ export const Buttons = ({
 
     if (history.length + 1 >= attempts) {
       setDisabled(true);
+      setIsGameOver(true);
     }
   };
 

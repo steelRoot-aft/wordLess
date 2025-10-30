@@ -63,7 +63,7 @@ export const Input = ({ inputs, setInputs, length }: InputBlockProps) => {
             maxLength={1}
             onChange={(e) => handleChange(e, i)}
             onKeyDown={(e) => handleKeyDown(e, i)}
-            className="aspect-square w-10 min-w-0 border-2 text-center text-2xl font-black uppercase sm:w-15 sm:text-4xl"
+            className="aspect-square w-13 min-w-0 border-2 text-center text-2xl font-black uppercase sm:w-15 sm:text-4xl"
           />
         ))}
       </div>
