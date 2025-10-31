@@ -16,7 +16,7 @@ export default function Home() {
   const [isVictory, setIsVictory] = useState(false);
   const [word, setWord] = useState<string | null>(null);
   const [inputs, setInputs] = useState([""]);
-  const [attempts, setAttempts] = useState(5);
+  const [attempts, setAttempts] = useState(7);
   const [history, setHistory] = useState<HistoryItem>([]);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <main className="grid h-full grid-cols-[minmax(auto,auto)] items-center justify-center">
-      <div className="flex flex-col gap-y-5 sm:rounded-lg sm:border-2 px-3 sm:px-10 py-3">
+      <div className="flex flex-col gap-y-5 px-3 py-3 sm:rounded-lg sm:border-2 sm:px-10">
         <Title />
         {word ? (
           <>
@@ -51,6 +51,7 @@ export default function Home() {
               setIsGameOver={setIsGameOver}
               setIsVictory={setIsVictory}
               word={word}
+              setWord={setWord}
             />
           </>
         ) : (

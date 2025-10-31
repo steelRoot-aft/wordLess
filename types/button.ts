@@ -10,5 +10,6 @@ export type ButtonsBlockProps = {
   setIsGameOver: React.Dispatch<React.SetStateAction<boolean>>
   setIsVictory: React.Dispatch<React.SetStateAction<boolean>>
   word: string
+  setWord: React.Dispatch<React.SetStateAction<string | null>>
 };
 

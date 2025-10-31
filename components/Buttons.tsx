@@ -13,6 +13,7 @@ export const Buttons = ({
   setInputs,
   setHistory,
   setIsVictory,
+  setWord,
 }: ButtonsBlockProps) => {
   const [disabled, setDisabled] = useState(false);
 
@@ -20,6 +21,7 @@ export const Buttons = ({
     setInputs([""]);
     setHistory([]);
     setDisabled(false);
+    setWord(null);
   };
 
   const handleCheck = () => {
