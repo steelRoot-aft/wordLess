@@ -13,14 +13,12 @@ import { GameOver } from "@/components/gameField/GameOver";
 import { useActionStore } from "@/store/useActionStore";
 
 export const GameField = () => {
-  const { setWord, word, isGameOver } = useActionStore();
+  const { setWord, word, isGameOver, lengthW, difficulty, isVictory } =
+    useActionStore();
 
   useEffect(() => {
-    if (word !== null) return;
-    const randomWord = RUWORDS[Math.floor(Math.random() * RUWORDS.length)];
-
-    setWord(randomWord.toLowerCase());
-  }, [word]);
+    setWord();
+  }, []);
 
   return (
     <article className="grid">

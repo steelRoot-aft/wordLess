@@ -6,6 +6,15 @@ const config: Config = {
     extend: {
       fontFamily: {
         jersey: "var(--font-jersey-15)",
+        pixels: "var(--font-pixels)",
+      },
+      colors: {
+        black: {
+          900: "#222",
+        },
+        white: {
+          50: "#e3e3e3",
+        },
       },
     },
   },

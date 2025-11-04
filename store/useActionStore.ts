@@ -1,3 +1,5 @@
+import prisma from "@/lib/prisma";
+import { RUWORDS } from "@/public/russian";
 import { UseActionStoreActions } from "@/types/store";
 import { create } from "zustand";
 
@@ -8,10 +10,24 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
   inputs: [],
   attempts: 5,
   history: [],
+  lengthW: 5,
+  difficulty: "medium",
 
   setIsGameOver: (isGameOver) => set({ isGameOver }),
   setIsVictory: (isVictory) => set({ isVictory }),
-  setWord: (word) => set({ word }),
+  setWord: () => {
+    const { lengthW, difficulty } = get();
+    const filtered = RUWORDS.filter(
+      (w) => w.length === lengthW && w.difficulty === difficulty,
+    );
+    const randomWord = filtered[Math.floor(Math.random() * filtered.length)];
+
+    if (!randomWord) {
+      return alert("Слова с такими параметрами не нашлось!");
+    }
+
+    set({ word: randomWord.word.toLowerCase() });
+  },
   setAttempts: (attempts) => set({ attempts }),
   updateInput: (index, value) =>
     set((state) => {
@@ -20,15 +36,15 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
 
       return { inputs: newInputs };
     }),
-  reset: () =>
+  reset: () => {
     set({
       isGameOver: false,
       isVictory: false,
-      word: null,
       inputs: [],
-      attempts: 5,
       history: [],
-    }),
+    });
+    get().setWord();
+  },
   check: (setDisabled) => {
     const { inputs, word, attempts, history } = get();
     if (!word) return;
@@ -38,6 +54,7 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
 
     if (inputs.join("") === word) {
       set({ isVictory: true, isGameOver: true });
+
       return;
     }
 
@@ -50,5 +67,29 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
       set({ isGameOver: true });
       setDisabled(true);
     }
+  },
+  setSettings: (lengthW, attempts, difficulty) => {
+    set({
+      lengthW,
+      attempts,
+      difficulty,
+      isGameOver: false,
+      isVictory: false,
+      inputs: [],
+      history: [],
+    });
+    get().setWord();
+  },
+  resetSettings: () => {
+    set({
+      attempts: 5,
+      lengthW: 5,
+      difficulty: "medium",
+      inputs: [],
+      history: [],
+      isGameOver: false,
+      isVictory: false,
+    });
+    get().setWord();
   },
 }));
