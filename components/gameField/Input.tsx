@@ -1,9 +1,13 @@
 "use client";
 
+import { useActionStore } from "@/store/useActionStore";
 import { InputBlockProps } from "@/types/input";
 import React, { useRef, useState } from "react";
 
-export const Input = ({ inputs, setInputs, length }: InputBlockProps) => {
+export const Input = () => {
+  const { inputs, updateInput, word } = useActionStore();
+  const length = word ? word.length : 0;
+
   const inputRef = useRef<(HTMLInputElement | null)[]>([]);
 
   const arr = Array.from({ length });
@@ -11,11 +15,7 @@ export const Input = ({ inputs, setInputs, length }: InputBlockProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, i: number) => {
     e.preventDefault();
 
-    setInputs((prev) => {
-      const newInput = [...prev];
-      newInput[i] = e.target.value.toLowerCase();
-      return newInput;
-    });
+    updateInput(i, e.target.value);
 
     inputRef.current[i + 1]?.focus();
   };
@@ -27,20 +27,12 @@ export const Input = ({ inputs, setInputs, length }: InputBlockProps) => {
     if (e.key === "Backspace") {
       if (inputs[i]) {
         // если в текущем input есть символ — просто очищаем
-        setInputs((prev) => {
-          const arr = [...prev];
-          arr[i] = "";
-          return arr;
-        });
+        updateInput(i, "");
         // НЕ смещаем фокус!
       } else if (i > 0) {
         // если текущий пустой — смещаем фокус
         inputRef.current[i - 1]?.focus();
-        setInputs((prev) => {
-          const arr = [...prev];
-          arr[i - 1] = ""; // еще можно сразу очистить предыдущий
-          return arr;
-        });
+        updateInput(i, "");
       }
     } else if (e.key === "ArrowLeft" && i > 0) {
       inputRef.current[i - 1]?.focus();

@@ -1,13 +1,12 @@
 "use client";
 
-import { ResultBlockProps } from "@/types/result";
+import { useActionStore } from "@/store/useActionStore";
 
-export const Result = ({
-  length,
-  attempts,
-  history,
-  words,
-}: ResultBlockProps) => {
+export const Result = () => {
+  const { attempts, history, word } = useActionStore();
+
+  const length = word ? word.length : 0;
+
   const getColors = (guess: string[], answer: string[]) => {
     const colors = Array(guess.length).fill("gray");
     const used = Array(answer.length).fill(false);
@@ -44,16 +43,16 @@ export const Result = ({
             {Array.from({ length }).map((_, j) => {
               const currentWord = history[i]?.words[j];
               const currentGuess = history[i]?.words || [""];
-              const colors = getColors(currentGuess, words.split(""));
+              const colors = getColors(currentGuess, word!.split(""));
 
               return (
                 <div
                   key={j}
-                  className={`flex aspect-square font-bold w-11 sm:w-15 items-center justify-center text-2xl sm:text-4xl uppercase duration-700 ${
+                  className={`flex aspect-square w-11 items-center justify-center text-2xl font-bold uppercase duration-700 sm:w-15 sm:text-4xl ${
                     colors[j] === "green"
-                      ? "bg-green-600 scaling"
+                      ? "scaling bg-green-600"
                       : colors[j] === "yellow"
-                        ? "bg-yellow-400 scaling text-black"
+                        ? "scaling bg-yellow-400 text-black"
                         : "bg-gray-400"
                   } `}
                 >
