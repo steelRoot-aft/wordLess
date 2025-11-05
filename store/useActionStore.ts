@@ -4,6 +4,7 @@ import { RUWORDS } from "@/public/russian";
 import { UseActionStoreActions } from "@/types/store";
 import { create } from "zustand";
 import { useBonusStore } from "./useBonusStore";
+import { useUserStore } from "./useUserStore";
 
 export const useActionStore = create<UseActionStoreActions>((set, get) => ({
   isGameOver: false,
@@ -51,9 +52,10 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
     setOpenWord([]);
     get().setWord();
   },
-  check: () => {
-    const { inputs, word, attempts, history } = get();
+  check: async () => {
+    const { inputs, word, attempts, history, difficulty } = get();
     const setOpenWord = useBonusStore.getState().setOpenWord;
+    const setCoins = useUserStore.getState().setCoins;
 
     if (!word) return;
 
@@ -62,7 +64,16 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
     }
 
     if (inputs.join("").toLowerCase() === word.toLowerCase()) {
-      set({ isVictory: true, isGameOver: true });
+      try {
+        set({ isVictory: true, isGameOver: true });
+        const result = await vanillaTrpcClient.user.addCoin.mutate({
+          difficulty,
+        });
+        setCoins(result.coins);
+        setOpenWord([]);
+      } catch (error) {
+        console.error(error);
+      }
 
       return;
     }

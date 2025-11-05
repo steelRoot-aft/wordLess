@@ -8,18 +8,18 @@ import { Settings } from "@/sections/Settings";
 
 export default function Home() {
   return (
-    <main className="grid h-full grid-rows-[auto_1fr]">
-      <SessionProviders>
+    <SessionProviders>
+      <main className="grid h-full grid-rows-[auto_1fr]">
         <Header />
         <UserInit />
-      </SessionProviders>
-      <div className="grid items-center justify-center gap-5 px-3 py-10 md:grid-cols-[repeat(3,1fr)]">
-        <div className="grid gap-y-2">
-          <Bonus />
-          <Settings />
+        <div className="grid items-center justify-center gap-5 px-3 py-10 md:grid-cols-[repeat(3,1fr)]">
+          <div className="grid gap-y-2">
+            <Bonus />
+            <Settings />
+          </div>
+          <GameField />
         </div>
-        <GameField />
-      </div>
-    </main>
+      </main>
+    </SessionProviders>
   );
 }

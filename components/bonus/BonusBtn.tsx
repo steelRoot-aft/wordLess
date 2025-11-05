@@ -3,7 +3,6 @@
 import { BonusBtnProps } from "@/types/button";
 import { CircleDollarSign } from "lucide-react";
 import { useBonusStore } from "@/store/useBonusStore";
-import { useSession } from "next-auth/react";
 import { useUserStore } from "@/store/useUserStore";
 
 export const BonusBtn = ({ label, opt, price }: BonusBtnProps) => {
@@ -21,7 +20,7 @@ export const BonusBtn = ({ label, opt, price }: BonusBtnProps) => {
       <button className="btn-bonus" onClick={() => handleBuyBonus()}>
         {label}
       </button>
-      <span className="flex items-center sm:text-base justify-center gap-x-1 bg-yellow-600 px-3 text-xs">
+      <span className="flex items-center justify-center gap-x-1 bg-yellow-600 px-3 text-xs sm:text-base">
         {price}
         <CircleDollarSign size={17} />
       </span>
