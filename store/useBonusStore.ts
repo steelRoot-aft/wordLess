@@ -75,4 +75,5 @@ export const useBonusStore = create<UseBonusStoreActions>((set, get) => ({
       return null;
     }
   },
+  setOpenWord: (openWord) => set({ openWord }),
 }));

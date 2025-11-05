@@ -5,32 +5,6 @@ import { useState } from "react";
 
 export const Buttons = () => {
   const { check, reset } = useActionStore();
-
-  // const handleReset = () => {
-  //   setInputs([""]);
-  //   setHistory([]);
-  //   setDisabled(false);
-  //   setWord(null);
-  // };
-
-  // const handleCheck = () => {
-  //   if (inputs.length !== length) return alert("Введите все буквы!");
-
-  //   if (inputs.join("") === word) {
-  //     setIsVictory(true);
-  //     setIsGameOver(true);
-  //     return;
-  //   }
-
-  //   setHistory((prev) => [...prev, { words: inputs }]);
-  //   setInputs([""]);
-
-  //   if (history.length + 1 >= attempts) {
-  //     setDisabled(true);
-  //     setIsGameOver(true);
-  //   }
-  // };
-
   return (
     <article className="grid gap-2 sm:grid-cols-2">
       <button

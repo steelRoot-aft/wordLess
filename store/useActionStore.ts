@@ -3,6 +3,7 @@ import { vanillaTrpcClient } from "@/lib/trpc/vanillaClient";
 import { RUWORDS } from "@/public/russian";
 import { UseActionStoreActions } from "@/types/store";
 import { create } from "zustand";
+import { useBonusStore } from "./useBonusStore";
 
 export const useActionStore = create<UseActionStoreActions>((set, get) => ({
   isGameOver: false,
@@ -38,16 +39,22 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
       return { inputs: newInputs };
     }),
   reset: () => {
+    const setOpenWord = useBonusStore.getState().setOpenWord;
+
     set({
       isGameOver: false,
       isVictory: false,
       inputs: [],
       history: [],
     });
+
+    setOpenWord([]);
     get().setWord();
   },
   check: () => {
     const { inputs, word, attempts, history } = get();
+    const setOpenWord = useBonusStore.getState().setOpenWord;
+
     if (!word) return;
 
     if (inputs.length !== word?.length) {
@@ -67,9 +74,12 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
 
     if (history.length + 1 >= attempts) {
       set({ isGameOver: true });
+      setOpenWord([]);
     }
   },
   setSettings: (lengthW, attempts, difficulty) => {
+    const setOpenWord = useBonusStore.getState().setOpenWord;
+
     set({
       lengthW,
       attempts,
@@ -79,9 +89,12 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
       inputs: [],
       history: [],
     });
+    setOpenWord([]);
     get().setWord();
   },
   resetSettings: () => {
+    const setOpenWord = useBonusStore.getState().setOpenWord;
+
     set({
       attempts: 5,
       lengthW: 5,
@@ -91,6 +104,7 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
       isGameOver: false,
       isVictory: false,
     });
+    setOpenWord([]);
     get().setWord();
   },
 }));
