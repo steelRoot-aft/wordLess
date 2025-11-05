@@ -13,3 +13,9 @@ export type ButtonsBlockProps = {
   setWord: React.Dispatch<React.SetStateAction<string | null>>
 };
 
+
+export type BonusBtnProps = {
+  label: string;
+  price: number
+  opt: "first" | "last" | "all"
+}

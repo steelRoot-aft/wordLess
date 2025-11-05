@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import { vanillaTrpcClient } from "@/lib/trpc/vanillaClient";
 import { RUWORDS } from "@/public/russian";
 import { UseActionStoreActions } from "@/types/store";
 import { create } from "zustand";
@@ -32,7 +33,7 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
   updateInput: (index, value) =>
     set((state) => {
       const newInputs = [...state.inputs];
-      newInputs[index] = value;
+      newInputs[index] = value.toLowerCase();
 
       return { inputs: newInputs };
     }),
@@ -45,14 +46,15 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
     });
     get().setWord();
   },
-  check: (setDisabled) => {
+  check: () => {
     const { inputs, word, attempts, history } = get();
     if (!word) return;
+
     if (inputs.length !== word?.length) {
       return alert("Введите все буквы!");
     }
 
-    if (inputs.join("") === word) {
+    if (inputs.join("").toLowerCase() === word.toLowerCase()) {
       set({ isVictory: true, isGameOver: true });
 
       return;
@@ -65,7 +67,6 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
 
     if (history.length + 1 >= attempts) {
       set({ isGameOver: true });
-      setDisabled(true);
     }
   },
   setSettings: (lengthW, attempts, difficulty) => {

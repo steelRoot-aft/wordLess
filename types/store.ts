@@ -20,7 +20,32 @@ export type UseActionStoreActions = UseActionStoreItem & {
   updateInput: (index: number, value: string) => void;
 
   reset: () => void;
-  check: (setDisabled: React.Dispatch<React.SetStateAction<boolean>>) => void;
-  setSettings: (lengthW: number, attempts: number, difficulty: Difficulty) => void;
+  check: () => void;
+  setSettings: (
+    lengthW: number,
+    attempts: number,
+    difficulty: Difficulty,
+  ) => void;
   resetSettings: () => void;
+};
+
+export type UseBonusStoreItem = {
+  openWord: {
+    char: string;
+    position: number;
+    isOpen: boolean;
+  }[];
+};
+
+export type UseBonusStoreActions = UseBonusStoreItem & {
+  setBonus: (opt: "first" | "last" | "all") => Promise<any>;
+};
+
+
+export type UseUserStoreItem = {
+  coins: number;
+};
+
+export type UseUserStoreActions = UseUserStoreItem & {
+  setCoins: (coins: number) => void;
 };

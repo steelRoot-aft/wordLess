@@ -2,19 +2,15 @@
 
 import { useEffect, useState } from "react";
 
-import { HistoryItem } from "@/types/other";
 import { Buttons } from "@/components/gameField/Buttons";
 import { Input } from "@/components/gameField/Input";
 import { Result } from "@/components/gameField/Result";
-import { Title } from "@/components/Title";
-import { RUWORDS } from "@/public/russian";
 import { Loading } from "@/components/gameField/Loading";
 import { GameOver } from "@/components/gameField/GameOver";
 import { useActionStore } from "@/store/useActionStore";
 
 export const GameField = () => {
-  const { setWord, word, isGameOver, lengthW, difficulty, isVictory } =
-    useActionStore();
+  const { setWord, word, isGameOver } = useActionStore();
 
   useEffect(() => {
     setWord();

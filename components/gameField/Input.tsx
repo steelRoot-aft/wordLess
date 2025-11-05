@@ -1,11 +1,14 @@
 "use client";
 
 import { useActionStore } from "@/store/useActionStore";
+import { useBonusStore } from "@/store/useBonusStore";
 import { InputBlockProps } from "@/types/input";
 import React, { useRef, useState } from "react";
 
 export const Input = () => {
   const { inputs, updateInput, word } = useActionStore();
+  const { openWord } = useBonusStore();
+
   const length = word ? word.length : 0;
 
   const inputRef = useRef<(HTMLInputElement | null)[]>([]);
@@ -42,7 +45,17 @@ export const Input = () => {
   };
 
   return (
-    <article>
+    <article className="grid gap-y-3">
+      <div className="flex justify-center gap-2">
+        {openWord.length > 0 && arr.map((char, i) => (
+          <span
+            key={i}
+            className="flex bg-gray-400 aspect-square w-11 items-center justify-center text-2xl font-bold uppercase duration-700 sm:w-15 sm:text-4xl"
+          >
+            {openWord.find((el) => el.position === i)?.char || ""}
+          </span>
+        ))}
+      </div>
       <div className="flex justify-center gap-2">
         {arr.map((char, i) => (
           <input

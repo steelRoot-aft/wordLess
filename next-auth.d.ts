@@ -1,4 +1,5 @@
 import "next-auth";
+import { Role } from "./lib/generated/enums";
 
 declare module "next-auth" {
   interface Session {
@@ -11,6 +12,7 @@ declare module "next-auth" {
       losses: number;
       games: number;
       score: number;
+      role: Role;
     };
   }
 

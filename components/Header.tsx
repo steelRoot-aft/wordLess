@@ -2,12 +2,15 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import { CircleDollarSign } from "lucide-react";
 import { useState } from "react";
+import { useUserStore } from "@/store/useUserStore";
 
 export const Header = () => {
   const [isOpenModla, setIsOpenModla] = useState(false);
 
-  const session = useSession();
-  const user = session.data?.user;
+  const { data: session } = useSession();
+  const user = session?.user;
+
+  const { coins } = useUserStore();
 
   return (
     <header className="font-pixels border-b-2 border-gray-400 px-3 py-5">
@@ -15,14 +18,14 @@ export const Header = () => {
         <h1 className="pointer-events-none mx-auto text-xl sm:mx-0 sm:text-3xl">
           WordLess|Game
         </h1>
-        {session.data ? (
+        {user ? (
           <div
             className="relative mx-auto flex cursor-pointer items-center gap-x-3 sm:mx-0"
             onClick={() => setIsOpenModla(!isOpenModla)}
           >
             <div className="flex items-center gap-x-1 border-r-2 pr-3">
               <CircleDollarSign size={15} />
-              <span className="text-xs">{user?.coins}</span>
+              <span className="text-xs">{coins}</span>
             </div>
             <h6 className="text-xs sm:text-sm">{user?.name}</h6>
             {isOpenModla && (

@@ -51,6 +51,8 @@ export type UserMinAggregateOutputType = {
   losses: number | null
   games: number | null
   score: number | null
+  role: $Enums.Role | null
+  createdAt: Date | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -63,6 +65,8 @@ export type UserMaxAggregateOutputType = {
   losses: number | null
   games: number | null
   score: number | null
+  role: $Enums.Role | null
+  createdAt: Date | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -75,6 +79,8 @@ export type UserCountAggregateOutputType = {
   losses: number
   games: number
   score: number
+  role: number
+  createdAt: number
   _all: number
 }
 
@@ -105,6 +111,8 @@ export type UserMinAggregateInputType = {
   losses?: true
   games?: true
   score?: true
+  role?: true
+  createdAt?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -117,6 +125,8 @@ export type UserMaxAggregateInputType = {
   losses?: true
   games?: true
   score?: true
+  role?: true
+  createdAt?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -129,6 +139,8 @@ export type UserCountAggregateInputType = {
   losses?: true
   games?: true
   score?: true
+  role?: true
+  createdAt?: true
   _all?: true
 }
 
@@ -228,6 +240,8 @@ export type UserGroupByOutputType = {
   losses: number
   games: number
   score: number
+  role: $Enums.Role
+  createdAt: Date
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -263,6 +277,8 @@ export type UserWhereInput = {
   losses?: Prisma.IntFilter<"User"> | number
   games?: Prisma.IntFilter<"User"> | number
   score?: Prisma.IntFilter<"User"> | number
+  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
 }
 
 export type UserOrderByWithRelationInput = {
@@ -275,6 +291,8 @@ export type UserOrderByWithRelationInput = {
   losses?: Prisma.SortOrder
   games?: Prisma.SortOrder
   score?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -290,6 +308,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   losses?: Prisma.IntFilter<"User"> | number
   games?: Prisma.IntFilter<"User"> | number
   score?: Prisma.IntFilter<"User"> | number
+  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -302,6 +322,8 @@ export type UserOrderByWithAggregationInput = {
   losses?: Prisma.SortOrder
   games?: Prisma.SortOrder
   score?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -322,6 +344,8 @@ export type UserScalarWhereWithAggregatesInput = {
   losses?: Prisma.IntWithAggregatesFilter<"User"> | number
   games?: Prisma.IntWithAggregatesFilter<"User"> | number
   score?: Prisma.IntWithAggregatesFilter<"User"> | number
+  role?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
 
 export type UserCreateInput = {
@@ -334,6 +358,8 @@ export type UserCreateInput = {
   losses?: number
   games?: number
   score?: number
+  role?: $Enums.Role
+  createdAt?: Date | string
 }
 
 export type UserUncheckedCreateInput = {
@@ -346,6 +372,8 @@ export type UserUncheckedCreateInput = {
   losses?: number
   games?: number
   score?: number
+  role?: $Enums.Role
+  createdAt?: Date | string
 }
 
 export type UserUpdateInput = {
@@ -358,6 +386,8 @@ export type UserUpdateInput = {
   losses?: Prisma.IntFieldUpdateOperationsInput | number
   games?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserUncheckedUpdateInput = {
@@ -370,6 +400,8 @@ export type UserUncheckedUpdateInput = {
   losses?: Prisma.IntFieldUpdateOperationsInput | number
   games?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserCreateManyInput = {
@@ -382,6 +414,8 @@ export type UserCreateManyInput = {
   losses?: number
   games?: number
   score?: number
+  role?: $Enums.Role
+  createdAt?: Date | string
 }
 
 export type UserUpdateManyMutationInput = {
@@ -394,6 +428,8 @@ export type UserUpdateManyMutationInput = {
   losses?: Prisma.IntFieldUpdateOperationsInput | number
   games?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -406,6 +442,8 @@ export type UserUncheckedUpdateManyInput = {
   losses?: Prisma.IntFieldUpdateOperationsInput | number
   games?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -418,6 +456,8 @@ export type UserCountOrderByAggregateInput = {
   losses?: Prisma.SortOrder
   games?: Prisma.SortOrder
   score?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
@@ -438,6 +478,8 @@ export type UserMaxOrderByAggregateInput = {
   losses?: Prisma.SortOrder
   games?: Prisma.SortOrder
   score?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -450,6 +492,8 @@ export type UserMinOrderByAggregateInput = {
   losses?: Prisma.SortOrder
   games?: Prisma.SortOrder
   score?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
@@ -476,6 +520,14 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type EnumRoleFieldUpdateOperationsInput = {
+  set?: $Enums.Role
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -488,6 +540,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   losses?: boolean
   games?: boolean
   score?: boolean
+  role?: boolean
+  createdAt?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -500,6 +554,8 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   losses?: boolean
   games?: boolean
   score?: boolean
+  role?: boolean
+  createdAt?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -512,6 +568,8 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   losses?: boolean
   games?: boolean
   score?: boolean
+  role?: boolean
+  createdAt?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -524,9 +582,11 @@ export type UserSelectScalar = {
   losses?: boolean
   games?: boolean
   score?: boolean
+  role?: boolean
+  createdAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "avatar" | "coins" | "wins" | "losses" | "games" | "score", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "avatar" | "coins" | "wins" | "losses" | "games" | "score" | "role" | "createdAt", ExtArgs["result"]["user"]>
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
@@ -541,6 +601,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     losses: number
     games: number
     score: number
+    role: $Enums.Role
+    createdAt: Date
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -973,6 +1035,8 @@ export interface UserFieldRefs {
   readonly losses: Prisma.FieldRef<"User", 'Int'>
   readonly games: Prisma.FieldRef<"User", 'Int'>
   readonly score: Prisma.FieldRef<"User", 'Int'>
+  readonly role: Prisma.FieldRef<"User", 'Role'>
+  readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
 }
     
 

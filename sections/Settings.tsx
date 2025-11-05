@@ -1,5 +1,6 @@
 "use client";
 
+import { ComponentTitle } from "@/components/ComponentTitle";
 import { useActionStore } from "@/store/useActionStore";
 import {
   AttemptsItem,
@@ -42,7 +43,7 @@ export const Settings = () => {
   return (
     <article className="font-pixels grid">
       <div className="grid gap-y-5 border-2 px-3 pt-5 pb-2">
-        <h2 className="text-center underline underline-offset-2">Настройки</h2>
+        <ComponentTitle title="Настройки" />
         <div className="grid gap-y-3">
           {/* Длинна слова */}
           <section className="flex items-end justify-between gap-x-3 text-xs">

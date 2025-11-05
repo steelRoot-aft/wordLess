@@ -43,6 +43,7 @@ export const authConfig: AuthOptions = {
           avatar: dbUser.avatar,
           name: dbUser.name,
           email: dbUser.email,
+          role: dbUser.role,
         };
       }
 
