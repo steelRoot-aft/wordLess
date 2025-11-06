@@ -48,7 +48,7 @@ export const Result = () => {
               return (
                 <div
                   key={j}
-                  className={`flex aspect-square max-w-20 flex-1 items-center justify-center text-2xl font-bold uppercase duration-700 sm:text-4xl ${
+                  className={`flex aspect-square w-10 items-center justify-center text-2xl font-bold uppercase duration-700 sm:w-15 sm:text-4xl ${
                     colors[j] === "green"
                       ? "scaling bg-green-600"
                       : colors[j] === "yellow"

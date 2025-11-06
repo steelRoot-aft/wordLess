@@ -53,9 +53,9 @@ export const Settings = () => {
         >
           <div className="grid gap-y-3">
             {/* Длинна слова */}
-            <section className="flex items-end justify-between gap-x-3 text-xs">
+            <section className="flex items-end justify-between gap-3 text-xs">
               <h4>Длинна слова:</h4>
-              <div className="flex gap-x-1">
+              <div className="flex gap-1">
                 {lengthData.map((item) => (
                   <button
                     key={item.label}
@@ -68,7 +68,7 @@ export const Settings = () => {
               </div>
             </section>
             {/* Количество попыток */}
-            <section className="flex items-end justify-between gap-x-3 text-xs">
+            <section className="flex items-end justify-between gap-3 text-xs">
               <h4>Количество попыток:</h4>
               <div className="flex gap-x-1">
                 {attemptsData.map((item) => (
@@ -85,11 +85,11 @@ export const Settings = () => {
             {/* Сложность слова */}
             <section className="flex flex-col gap-y-1 text-xs">
               <h4>Сложность слова:</h4>
-              <div className="grid grid-cols-[repeat(3,1fr)] gap-1">
+              <div className="flex gap-1">
                 {difficultyData.map((item) => (
                   <button
                     key={item.label}
-                    className={`text-black-900 h-7 px-1 text-xs duration-30 ${item.value === difficulty ? "scaling bg-white" : "0 bg-gray-400 hover:bg-gray-500"}`}
+                    className={`text-black-900 h-7 flex-1 px-1 text-xs duration-30 ${item.value === difficulty ? "scaling bg-white" : "0 bg-gray-400 hover:bg-gray-500"}`}
                     onClick={() => setDifficulty(item.value)}
                   >
                     {item.label}
