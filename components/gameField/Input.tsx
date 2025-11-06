@@ -46,16 +46,18 @@ export const Input = () => {
 
   return (
     <article className="grid gap-y-3">
-      <div className="flex justify-center gap-2">
-        {openWord.length > 0 && arr.map((char, i) => (
-          <span
-            key={i}
-            className="flex bg-gray-400 aspect-square w-11 items-center justify-center text-2xl font-bold uppercase duration-700 sm:w-15 sm:text-4xl"
-          >
-            {openWord.find((el) => el.position === i)?.char || ""}
-          </span>
-        ))}
-      </div>
+      {openWord.length > 0 && (
+        <div className="flex justify-center gap-2">
+          {arr.map((char, i) => (
+            <span
+              key={i}
+              className="flex aspect-square w-11 items-center justify-center bg-gray-400 text-2xl font-bold uppercase duration-700 sm:w-15 sm:text-4xl"
+            >
+              {openWord.find((el) => el.position === i)?.char || ""}
+            </span>
+          ))}
+        </div>
+      )}
       <div className="flex justify-center gap-2">
         {arr.map((char, i) => (
           <input

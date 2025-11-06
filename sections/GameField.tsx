@@ -18,7 +18,7 @@ export const GameField = () => {
 
   return (
     <article className="grid">
-      <div className="flex flex-col gap-y-5 px-3 py-3 sm:px-10">
+      <div className="flex flex-col gap-y-5 px-3">
         {word ? (
           <>
             <Input />

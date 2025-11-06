@@ -17,5 +17,11 @@ export type ButtonsBlockProps = {
 export type BonusBtnProps = {
   label: string;
   price: number
-  opt: "first" | "last" | "all"
+  opt: "first" | "last" | "all" | "random";
+}
+
+export type ComponentTitleProps = {
+  title: string;
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }

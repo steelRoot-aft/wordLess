@@ -39,7 +39,7 @@ export type UseBonusStoreItem = {
 
 export type UseBonusStoreActions = UseBonusStoreItem & {
   setOpenWord: (openWord: UseBonusStoreItem["openWord"]) => void;
-  setBonus: (opt: "first" | "last" | "all") => Promise<any>;
+  setBonus: (opt: "first" | "last" | "all" | "random") => Promise<any>;
 };
 
 export type UseUserStoreItem = {

@@ -8,7 +8,6 @@ export const useBonusStore = create<UseBonusStoreActions>((set, get) => ({
   setBonus: async (opt) => {
     const word = useActionStore.getState().word;
     const { openWord } = get();
-
     if (!word) return;
 
     if (openWord.length >= word.length)
@@ -66,6 +65,27 @@ export const useBonusStore = create<UseBonusStoreActions>((set, get) => ({
             isOpen: true,
           })),
         });
+
+        return result;
+      }
+      if (opt === "random") {
+        const result = await vanillaTrpcClient.bonus.openRandom.mutate({
+          word,
+          alreadyOpened: openWord.map((char) => char.char),
+        });
+
+        const findPosition = word.indexOf(result.bonusChar);
+
+        set((state) => ({
+          openWord: [
+            ...openWord,
+            {
+              char: result.bonusChar,
+              position: findPosition,
+              isOpen: true,
+            },
+          ],
+        }));
 
         return result;
       }

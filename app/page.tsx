@@ -12,7 +12,7 @@ export default function Home() {
       <main className="grid h-full grid-rows-[auto_1fr]">
         <Header />
         <UserInit />
-        <div className="grid items-center justify-center gap-5 px-3 py-10 md:grid-cols-[repeat(3,1fr)]">
+        <div className="grid items-start justify-center gap-5 px-3 py-10 md:grid-cols-[repeat(3,1fr)]">
           <div className="grid gap-y-2">
             <Bonus />
             <Settings />
