@@ -21,3 +21,8 @@ export * from './enums';
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model Word
+ * 
+ */
+export type Word = Prisma.WordModel

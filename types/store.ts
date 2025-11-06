@@ -1,5 +1,5 @@
+import { Difficulty } from "@/lib/generated/enums";
 import { HistoryItem } from "./other";
-import { Difficulty } from "./settings";
 
 export type UseActionStoreItem = {
   isGameOver: boolean;
@@ -39,7 +39,7 @@ export type UseBonusStoreItem = {
 
 export type UseBonusStoreActions = UseBonusStoreItem & {
   setOpenWord: (openWord: UseBonusStoreItem["openWord"]) => void;
-  setBonus: (opt: "first" | "last" | "all" | "random") => Promise<any>;
+  setBonus: (opt: "first" | "last" | "all" | "random", setLoading: React.Dispatch<React.SetStateAction<boolean>>) => Promise<any>;
 };
 
 export type UseUserStoreItem = {

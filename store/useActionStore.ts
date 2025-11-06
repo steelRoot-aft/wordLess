@@ -5,6 +5,7 @@ import { UseActionStoreActions } from "@/types/store";
 import { create } from "zustand";
 import { useBonusStore } from "./useBonusStore";
 import { useUserStore } from "./useUserStore";
+import { Difficulty } from "@/lib/generated/enums";
 
 export const useActionStore = create<UseActionStoreActions>((set, get) => ({
   isGameOver: false,
@@ -14,7 +15,7 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
   attempts: 5,
   history: [],
   lengthW: 5,
-  difficulty: "medium",
+  difficulty: Difficulty.MEDIUM,
 
   setIsGameOver: (isGameOver) => set({ isGameOver }),
   setIsVictory: (isVictory) => set({ isVictory }),
@@ -66,8 +67,9 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
     if (inputs.join("").toLowerCase() === word.toLowerCase()) {
       try {
         set({ isVictory: true, isGameOver: true });
-        const result = await vanillaTrpcClient.user.addCoin.mutate({
+        const result = await vanillaTrpcClient.user.gameOver.mutate({
           difficulty,
+          isVictory: true,
         });
         setCoins(result.coins);
         setOpenWord([]);
@@ -85,6 +87,9 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
 
     if (history.length + 1 >= attempts) {
       set({ isGameOver: true });
+      await vanillaTrpcClient.user.gameOver.mutate({
+        isVictory: false,
+      });
       setOpenWord([]);
     }
   },
@@ -109,7 +114,7 @@ export const useActionStore = create<UseActionStoreActions>((set, get) => ({
     set({
       attempts: 5,
       lengthW: 5,
-      difficulty: "medium",
+      difficulty: Difficulty.MEDIUM,
       inputs: [],
       history: [],
       isGameOver: false,

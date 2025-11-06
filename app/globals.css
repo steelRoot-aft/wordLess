@@ -6,16 +6,21 @@
     @apply text-black-900 rounded-xs bg-gray-400 px-4 py-2 text-xs duration-300 hover:bg-gray-500;
   }
   .btn-settings {
-    @apply bg-gray-400 px-4 py-2 text-xs duration-300 hover:bg-gray-500;
+    @apply bg-black-900 px-4 py-2 text-xs duration-300 hover:bg-gray-700;
   }
   .btn-bonus {
-    @apply bg-gray-400 text-left px-4 text-balance py-2 text-[0.55rem] duration-300 hover:bg-gray-500 sm:text-xs;
+    @apply bg-black-900 px-4 py-2 text-left text-[0.55rem] text-balance duration-300 hover:bg-gray-700 sm:text-xs;
   }
 }
 
 body {
   background-color: #222;
   color: #fff;
+}
+
+input, textarea, option, select {
+  outline: none;
+  min-width: 0;
 }
 
 button {

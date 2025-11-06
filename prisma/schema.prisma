@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client"
-  output = "../lib/generated"
+  output   = "../lib/generated"
 }
 
 datasource db {
@@ -20,16 +20,38 @@ enum Role {
   MODERATOR
 }
 
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
 model User {
-  id    String @id @default(uuid())
-  email String @unique
-  name  String
-  avatar String?  
-  coins Int @default(0)
-  wins  Int @default(0)
-  losses Int @default(0)
-  games Int @default(0)
-  score Int @default(0)
-  role  Role @default(USER)
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  avatar    String?
+  coins     Int      @default(0)
+  wins      Int      @default(0)
+  losses    Int      @default(0)
+  games     Int      @default(0)
+  score     Int      @default(0)
+  role      Role     @default(USER)
   createdAt DateTime @default(now())
+
+  words Word[]
+}
+
+model Word {
+  id         String     @id @default(uuid())
+  word       String     @unique
+  isApproved Boolean    @default(false)
+  difficulty Difficulty @default(EASY)
+  createdAt  DateTime   @default(now())
+  successes  Int        @default(0)
+  failures   Int        @default(0)
+  authorId   String
+  length     Int
+
+  user User @relation(fields: [authorId], references: [id])
 }

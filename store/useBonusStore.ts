@@ -5,13 +5,15 @@ import { useActionStore } from "./useActionStore";
 
 export const useBonusStore = create<UseBonusStoreActions>((set, get) => ({
   openWord: [],
-  setBonus: async (opt) => {
+  setBonus: async (opt, setLoading) => {
     const word = useActionStore.getState().word;
     const { openWord } = get();
     if (!word) return;
 
     if (openWord.length >= word.length)
       return alert("Вы уже открыли все бонусы");
+
+    setLoading(true);
 
     try {
       if (opt === "first") {
@@ -92,7 +94,8 @@ export const useBonusStore = create<UseBonusStoreActions>((set, get) => ({
     } catch (error) {
       alert("Ошибка при покупке бонуса или бонус уже куплен!");
       console.error(`Ошибка при покупке бонуса: ${error}`);
-      return null;
+    } finally {
+      setLoading(false);
     }
   },
   setOpenWord: (openWord) => set({ openWord }),

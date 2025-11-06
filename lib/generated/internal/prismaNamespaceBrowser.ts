@@ -48,7 +48,8 @@ export const AnyNull = runtime.objectEnumValues.instances.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  Word: 'Word'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -82,6 +83,21 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const WordScalarFieldEnum = {
+  id: 'id',
+  word: 'word',
+  isApproved: 'isApproved',
+  difficulty: 'difficulty',
+  createdAt: 'createdAt',
+  successes: 'successes',
+  failures: 'failures',
+  authorId: 'authorId',
+  length: 'length'
+} as const
+
+export type WordScalarFieldEnum = (typeof WordScalarFieldEnum)[keyof typeof WordScalarFieldEnum]
 
 
 export const SortOrder = {

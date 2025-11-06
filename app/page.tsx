@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Title } from "@/components/Title";
 import { UserInit } from "@/components/UserInit";
 import { SessionProviders } from "@/providers/SessionProviders";
+import { AddWord } from "@/sections/AddWord";
 import { Bonus } from "@/sections/Bonus";
 import { GameField } from "@/sections/GameField";
 import { Settings } from "@/sections/Settings";
@@ -16,6 +17,7 @@ export default function Home() {
           <div className="grid gap-y-2">
             <Bonus />
             <Settings />
+            <AddWord />
           </div>
           <GameField />
           <div>
