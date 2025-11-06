@@ -5,6 +5,7 @@ import { SessionProviders } from "@/providers/SessionProviders";
 import { AddWord } from "@/sections/AddWord";
 import { Bonus } from "@/sections/Bonus";
 import { GameField } from "@/sections/GameField";
+import { Info } from "@/sections/Info";
 import { Settings } from "@/sections/Settings";
 
 export default function Home() {
@@ -20,9 +21,7 @@ export default function Home() {
             <AddWord />
           </div>
           <GameField />
-          <div>
-            Test
-          </div>
+          <Info />
         </div>
       </main>
     </SessionProviders>

@@ -6,9 +6,10 @@ import { useEffect } from "react";
 
 export const UserInit = () => {
   const { data: session } = useSession();
-  const { setCoins } = useUserStore();
+  const { setCoins, setInitialUser } = useUserStore();
 
   useEffect(() => {
+    setInitialUser();
     if (session?.user.coins) {
       setCoins(session.user.coins);
     }

@@ -1,4 +1,4 @@
-import { Difficulty } from "@/lib/generated/enums";
+import { Difficulty, Role } from "@/lib/generated/enums";
 import { HistoryItem } from "./other";
 
 export type UseActionStoreItem = {
@@ -39,13 +39,29 @@ export type UseBonusStoreItem = {
 
 export type UseBonusStoreActions = UseBonusStoreItem & {
   setOpenWord: (openWord: UseBonusStoreItem["openWord"]) => void;
-  setBonus: (opt: "first" | "last" | "all" | "random", setLoading: React.Dispatch<React.SetStateAction<boolean>>) => Promise<any>;
+  setBonus: (
+    opt: "first" | "last" | "all" | "random",
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => Promise<any>;
 };
 
 export type UseUserStoreItem = {
+  id: string | null;
   coins: number;
+  name: string | null;
+  email: string | null;
+  avatar: string | null;
+  role: Role;
+  createdAt: Date | null;
+  words: number;
+  wins: number;
+  losses: number;
+  games: number;
+  score: number;
 };
 
 export type UseUserStoreActions = UseUserStoreItem & {
   setCoins: (coins: number) => void;
+  setInitialUser: () => void;
+  setName: (name: string) => void;
 };

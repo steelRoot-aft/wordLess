@@ -11,6 +11,15 @@
   .btn-bonus {
     @apply bg-black-900 px-4 py-2 text-left text-[0.55rem] text-balance duration-300 hover:bg-gray-700 sm:text-xs;
   }
+  .btn-info {
+    @apply px-3 py-2 text-[0.6rem] duration-300;
+  }
+  .th {
+    @apply border-1 bg-gray-500 p-2 text-left;
+  }
+  .td {
+    @apply w-full max-w-35 truncate border-1 bg-gray-600 p-2 text-left;
+  }
 }
 
 body {
@@ -18,7 +27,10 @@ body {
   color: #fff;
 }
 
-input, textarea, option, select {
+input,
+textarea,
+option,
+select {
   outline: none;
   min-width: 0;
 }

@@ -103,4 +103,57 @@ export const userRouter = router({
         success: true,
       };
     }),
+
+  getUserInfo: protectedProcedure.query(async ({ ctx }) => {
+    const { prisma, user } = ctx;
+
+    if (!user) {
+      throw new TRPCError({
+        code: "UNAUTHORIZED",
+        message: "User not found",
+      });
+    }
+
+    const userInfo = await prisma.user.findUnique({
+      where: {
+        id: user.id,
+      },
+      include: {
+        words: true,
+      },
+    });
+
+    return userInfo;
+  }),
+
+  changeName: protectedProcedure
+    .input(
+      z.object({
+        name: z.string().min(3).max(30),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { prisma, user } = ctx;
+      const { name } = input;
+
+      if (!user) {
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: "User not found",
+        });
+      }
+
+      const userUpdated = await prisma.user.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          name,
+        },
+      });
+
+      return {
+        name: userUpdated.name,
+      };
+    }),
 });

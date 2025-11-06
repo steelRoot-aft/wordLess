@@ -10,7 +10,7 @@ export const Header = () => {
   const { data: session } = useSession();
   const user = session?.user;
 
-  const { coins } = useUserStore();
+  const { coins, name } = useUserStore();
 
   return (
     <header className="font-pixels border-b-2 border-gray-400 px-3 py-5">
@@ -27,7 +27,7 @@ export const Header = () => {
               <CircleDollarSign size={15} />
               <span className="text-xs">{coins}</span>
             </div>
-            <h6 className="text-xs sm:text-sm">{user?.name}</h6>
+            <h6 className="text-xs sm:text-sm">{name}</h6>
             {isOpenModla && (
               <button
                 className="btn-sign absolute top-full right-0 z-100 w-full translate-y-2"

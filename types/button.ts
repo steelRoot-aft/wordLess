@@ -25,3 +25,8 @@ export type ComponentTitleProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export type InfoTypeBtnProps = {
+  typeInfo: 'personal' | 'general';
+  setTypeInfo: React.Dispatch<React.SetStateAction<'personal' | 'general'>>
+};
