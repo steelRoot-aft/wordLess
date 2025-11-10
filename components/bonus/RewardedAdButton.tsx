@@ -3,7 +3,7 @@
 import { vanillaTrpcClient } from "@/lib/trpc/vanillaClient";
 import { useUserStore } from "@/store/useUserStore";
 import { useSession } from "next-auth/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const RewardedAdButton = () => {
   const [isPlay, setIsPlay] = useState(false);
@@ -13,7 +13,6 @@ export const RewardedAdButton = () => {
   const { setCoins } = useUserStore();
 
   const { data: session } = useSession();
-  if (!session) return null;
   const handleWatchAd = () => {
     setIsPlay(true);
     setTimeLeft(30);
@@ -57,6 +56,16 @@ export const RewardedAdButton = () => {
     }
   };
 
+  useEffect(() => {
+    if (isPlay) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isPlay]);
+
+  if (!session) return null;
+
   return (
     <article className="font-pixels grid">
       {!isPlay ? (
@@ -67,7 +76,7 @@ export const RewardedAdButton = () => {
           Получить 5 монет
         </button>
       ) : (
-        <div className="fixed top-0 left-0 grid h-full w-full items-center justify-center bg-black/70 text-xs sm:grid-cols-[minmax(auto,350px)] sm:p-3 sm:text-sm">
+        <div className="fixed top-0 left-0 z-1000 grid h-full w-full items-center justify-center bg-black/70 text-xs sm:grid-cols-[minmax(auto,350px)] sm:p-3 sm:text-sm">
           <div className="grid h-full overflow-y-auto bg-gray-400 pt-3 sm:border-2">
             <h2 className="px-3 pb-3 text-center">
               Посмотрите рекламу и получите 5 монет
