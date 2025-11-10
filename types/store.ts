@@ -1,5 +1,5 @@
 import { Difficulty, Role } from "@/lib/generated/enums";
-import { HistoryItem } from "./other";
+import { HistoryItem, InfoDataItem } from "./other";
 
 export type UseActionStoreItem = {
   isGameOver: boolean;
@@ -58,6 +58,7 @@ export type UseUserStoreItem = {
   losses: number;
   games: number;
   score: number;
+  otherInfo: InfoDataItem;
 };
 
 export type UseUserStoreActions = UseUserStoreItem & {

@@ -1,3 +1,4 @@
+import { RewardedAdButton } from "@/components/bonus/RewardedAdButton";
 import { Header } from "@/components/Header";
 import { Title } from "@/components/Title";
 import { UserInit } from "@/components/UserInit";
@@ -16,6 +17,7 @@ export default function Home() {
         <UserInit />
         <div className="grid items-start justify-center gap-5 px-3 py-10 lg:grid-cols-[repeat(3,1fr)]">
           <div className="grid gap-y-2">
+            <RewardedAdButton />
             <Bonus />
             <Settings />
             <AddWord />

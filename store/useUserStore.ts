@@ -19,12 +19,16 @@ export const useUserStore = create<UseUserStoreActions>()(
       games: 0,
       score: 0,
       words: 0,
-
+      otherInfo: [],
       setCoins: (coins) => set({ coins }),
       setInitialUser: async () => {
         const result = await vanillaTrpcClient.user.getUserInfo.query();
-
-        set({ ...result, words: result?.words.length });
+        const resOtherInfo = await vanillaTrpcClient.user.getOtherInfo.query();
+        set({
+          ...result,
+          words: result?.words.length,
+          otherInfo: resOtherInfo,
+        });
       },
       setName: (name) => set({ name }),
     }),

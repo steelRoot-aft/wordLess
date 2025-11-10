@@ -9,6 +9,8 @@ export const UserInit = () => {
   const { setCoins, setInitialUser } = useUserStore();
 
   useEffect(() => {
+    if (!session?.user) return;
+
     setInitialUser();
     if (session?.user.coins) {
       setCoins(session.user.coins);

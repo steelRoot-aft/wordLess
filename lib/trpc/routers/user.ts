@@ -1,5 +1,5 @@
 import z from "zod";
-import { protectedProcedure, router } from "../trpc";
+import { protectedProcedure, publicProcedure, router } from "../trpc";
 import { TRPCError } from "@trpc/server";
 import { Difficulty } from "@/lib/generated/enums";
 
@@ -26,6 +26,9 @@ export const userRouter = router({
         const coins =
           difficulty === "EASY" ? 10 : difficulty === "MEDIUM" ? 15 : 25;
 
+        const score =
+          difficulty === "EASY" ? 8 : difficulty === "MEDIUM" ? 14 : 21;
+
         const updatedUser = await prisma.user.update({
           where: {
             id: user.id,
@@ -34,6 +37,7 @@ export const userRouter = router({
             coins: user.coins + coins,
             wins: user.wins + 1,
             games: user.games + 1,
+            score,
           },
         });
 
@@ -54,6 +58,38 @@ export const userRouter = router({
 
       return {
         coins: user.coins,
+      };
+    }),
+
+  rewardAddWatched: protectedProcedure
+    .input(
+      z.object({
+        rewardType: z.enum(["watchAd"]),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { prisma, user } = ctx;
+
+      if (!user) {
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: "User not found",
+        });
+      }
+
+      const coinsForAd = 5
+
+      const updatedUser = await prisma.user.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          coins: user.coins + coinsForAd,
+        },
+      });
+
+      return {
+        coins: updatedUser.coins,
       };
     }),
 
@@ -156,4 +192,21 @@ export const userRouter = router({
         name: userUpdated.name,
       };
     }),
+
+  getOtherInfo: publicProcedure.query(async ({ ctx }) => {
+    const { prisma } = ctx;
+
+    const allInfo = await prisma.user.findMany({
+      orderBy: {
+        score: "desc",
+      },
+      take: 10,
+      select: {
+        name: true,
+        score: true,
+      },
+    });
+
+    return allInfo;
+  }),
 });

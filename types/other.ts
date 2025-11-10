@@ -1,4 +1,6 @@
 import { Difficulty } from "@/lib/generated/enums";
+import { AppRouter } from "@/lib/trpc/routers/_app";
+import { inferRouterOutputs } from "@trpc/server";
 
 export type HistoryItem = {
   words: string[];
@@ -29,3 +31,6 @@ export type InfoTrProps = {
   isEdit?: boolean;
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+export type InfoDataItem =
+  inferRouterOutputs<AppRouter>["user"]["getOtherInfo"];
